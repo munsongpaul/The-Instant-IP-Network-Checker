@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Online PDF Text Extractor - Quick & Secure</title>
+    <!-- Include Mozilla PDF.js Library -->
+    <script src="https://cloudflare.com"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; text-align: center; background: #f9f9f9; }
+        .upload-box { border: 3px dashed #007bff; padding: 40px; border-radius: 10px; background: white; cursor: pointer; margin-bottom: 20px; }
+        textarea { width: 100%; height: 300px; margin-top: 20px; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+        .ad-space { width: 100%; height: 90px; background: #eee; margin: 20px 0; display: flex; align-items: center; justify-content: center; color: #666; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <h1>Instant Online PDF Text Extractor</h1>
+    <p>Extract text from any PDF file directly in your browser. 100% private—your files are never uploaded to a server.</p>
+
+    <!-- PLACE YOUR FIRST AD CODE HERE -->
+    <div class="ad-space">Placeholder: Top Banner Ad (Monetag/AdSense)</div>
+
+    <div class="upload-box" onclick="document.getElementById('file-input').click()">
+        <h3>Drag & Drop your PDF here or Click to Browse</h3>
+        <input type="file" id="file-input" accept=".pdf" style="display:none;" onchange="handleFile(this.files[0])">
+    </div>
+
+    <button id="copy-btn" style="display:none; padding:10px 20px; background:#007bff; color:white; border:none; border-radius:5px; cursor:pointer;" onclick="copyText()">Copy Text to Clipboard</button>
+    <textarea id="output-text" placeholder="Your extracted text will appear here..."></textarea>
+
+    <!-- PLACE YOUR SECOND AD CODE HERE -->
+    <div class="ad-space">Placeholder: Bottom Banner Ad</div>
+
+    <!-- SEO Text Area: This forces Google to rank your page -->
+    <div style="text-align: left; margin-top: 40px; border-top: 1px solid #ccc; padding-top: 20px;">
+        <h2>Frequently Asked Questions</h2>
+        <h3>Is this online PDF text extractor safe?</h3>
+        <p>Yes. Unlike other tools, our converter processes your document entirely on your local device using Javascript. Your data never touches an external server.</p>
+        <h3>Can I extract text from secured PDFs?</h3>
+        <p>If the PDF is password protected against viewing, you must unlock it first. If it only has copying restrictions, our browser-based tool can easily bypass it and extract the text cleanly.</p>
+    </div>
+
+    <script>
+        // Set up PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cloudflare.com';
+
+        async function handleFile(file) {
+            if (!file) return;
+            const reader = new FileReader();
+            
+            reader.onload = async function(e) {
+                const typedarray = new Uint8Array(e.target.result);
+                try {
+                    const pdf = await pdfjsLib.getDocument(typedarray).promise;
+                    let fullText = "";
+                    
+                    for (let i = 1; i <= pdf.numPages; i++) {
+                        const page = await pdf.getPage(i);
+                        const textContent = await page.getTextContent();
+                        const pageText = textContent.items.map(item => item.str).join(" ");
+                        fullText += `--- Page ${i} ---\n` + pageText + "\n\n";
+                    }
+                    
+                    document.getElementById('output-text').value = fullText;
+                    document.getElementById('copy-btn').style.display = 'inline-block';
+                } catch (error) {
+                    alert("Error parsing PDF. Make sure it is not password-protected.");
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function copyText() {
+            const textarea = document.getElementById('output-text');
+            textarea.select();
+            document.execCommand('copy');
+            alert('Text copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
