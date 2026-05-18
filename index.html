@@ -3,79 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Online PDF Text Extractor - Quick & Secure</title>
-    <!-- Include Mozilla PDF.js Library -->
-    <script src="https://cloudflare.com"></script>
+    <title>Instant IP Address, ISP & Internet Speed Test Tool</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; text-align: center; background: #f9f9f9; }
-        .upload-box { border: 3px dashed #007bff; padding: 40px; border-radius: 10px; background: white; cursor: pointer; margin-bottom: 20px; }
-        textarea { width: 100%; height: 300px; margin-top: 20px; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
-        .ad-space { width: 100%; height: 90px; background: #eee; margin: 20px 0; display: flex; align-items: center; justify-content: center; color: #666; font-size: 12px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; text-align: center; background: #f4f7f6; color: #333; }
+        .container { background: white; padding: 300px 30px 40px 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-top: 20px; position: relative; }
+        .hero-btn { background: #007bff; color: white; border: none; padding: 15px 40px; font-size: 18px; font-weight: bold; border-radius: 30px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,123,255,0.3); }
+        .hero-btn:hover { background: #0056b3; transform: translateY(-2px); }
+        .result-box { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 30px; }
+        .card { background: #f8f9fa; padding: 20px; border-radius: 8px; border: 1px solid #e9ecef; }
+        .card h3 { margin: 0 0 10px 0; font-size: 14px; color: #6c757d; text-transform: uppercase; }
+        .card p { margin: 0; font-size: 20px; font-weight: bold; color: #212529; word-break: break-all; }
+        .ad-banner { width: 100%; height: 90px; background: #e9ecef; margin: 25px 0; display: flex; align-items: center; justify-content: center; color: #777; font-size: 12px; border: 1px dashed #ced4da; }
+        .seo-section { text-align: left; margin-top: 50px; border-top: 1px solid #dee2e6; padding-top: 30px; line-height: 1.6; }
     </style>
 </head>
 <body>
 
-    <h1>Instant Online PDF Text Extractor</h1>
-    <p>Extract text from any PDF file directly in your browser. 100% private—your files are never uploaded to a server.</p>
+    <h1>What Is My IP & Internet Speed?</h1>
+    <p>Check your public IP address, internet service provider (ISP), and live network speed instantly in one single click.</p>
 
-    <!-- PLACE YOUR FIRST AD CODE HERE -->
-    <div class="ad-space">Placeholder: Top Banner Ad (Monetag/AdSense)</div>
-
-    <div class="upload-box" onclick="document.getElementById('file-input').click()">
-        <h3>Drag & Drop your PDF here or Click to Browse</h3>
-        <input type="file" id="file-input" accept=".pdf" style="display:none;" onchange="handleFile(this.files[0])">
+    <!-- PASTE YOUR TOP MONETAG AD CODE INSIDE THIS DIV -->
+    <div class="ad-banner">
+        <span>Placeholder: Monetag / AdSense Top Banner Ad</span>
     </div>
 
-    <button id="copy-btn" style="display:none; padding:10px 20px; background:#007bff; color:white; border:none; border-radius:5px; cursor:pointer;" onclick="copyText()">Copy Text to Clipboard</button>
-    <textarea id="output-text" placeholder="Your extracted text will appear here..."></textarea>
+    <div class="container">
+        <button class="hero-btn" id="start-btn" onclick="runNetworkCheck()">Run Diagnostics</button>
 
-    <!-- PLACE YOUR SECOND AD CODE HERE -->
-    <div class="ad-space">Placeholder: Bottom Banner Ad</div>
+        <div class="result-box">
+            <div class="card">
+                <h3>IP Address</h3>
+                <p id="ip-val">-</p>
+            </div>
+            <div class="card">
+                <h3>Internet Provider (ISP)</h3>
+                <p id="isp-val">-</p>
+            </div>
+            <div class="card">
+                <h3>Download Speed</h3>
+                <p id="speed-val">-</p>
+            </div>
+        </div>
+    </div>
 
-    <!-- SEO Text Area: This forces Google to rank your page -->
-    <div style="text-align: left; margin-top: 40px; border-top: 1px solid #ccc; padding-top: 20px;">
+    <!-- PASTE YOUR BOTTOM MONETAG AD CODE INSIDE THIS DIV -->
+    <div class="ad-banner">
+        <span>Placeholder: Monetag / AdSense Bottom Banner Ad</span>
+    </div>
+
+    <!-- SEO SECTION: This text makes Google rank your page over competitors -->
+    <div class="seo-section">
         <h2>Frequently Asked Questions</h2>
-        <h3>Is this online PDF text extractor safe?</h3>
-        <p>Yes. Unlike other tools, our converter processes your document entirely on your local device using Javascript. Your data never touches an external server.</p>
-        <h3>Can I extract text from secured PDFs?</h3>
-        <p>If the PDF is password protected against viewing, you must unlock it first. If it only has copying restrictions, our browser-based tool can easily bypass it and extract the text cleanly.</p>
+        <h3>How does this tool find my IP address and ISP?</h3>
+        <p>When you click the check button, our tool securely communicates with a public lookup system to read your network's public digital signature. It instantly reads your IP and your Internet Service Provider (ISP) without accessing your private personal files or browser history.</p>
+        
+        <h3>Is my data shared or stored?</h3>
+        <p>No. Your privacy is critical. This network tool is 100% client-side, which means the calculations and network checks happen strictly within your internet browser. We do not host databases, track user history, or store network details on any server.</p>
+        
+        <h3>How accurate is the online internet speed test?</h3>
+        <p>Our tool downloads a small, safe dummy file entirely inside your browser cache to calculate how many megabits per second (Mbps) your current connection can handle. For the most accurate results, ensure you aren't actively downloading large video files or streaming media in other browser tabs while running the check.</p>
     </div>
 
     <script>
-        // Set up PDF.js worker
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cloudflare.com';
+        async function runNetworkCheck() {
+            const btn = document.getElementById('start-btn');
+            btn.innerText = "Checking Network...";
+            btn.disabled = true;
 
-        async function handleFile(file) {
-            if (!file) return;
-            const reader = new FileReader();
-            
-            reader.onload = async function(e) {
-                const typedarray = new Uint8Array(e.target.result);
-                try {
-                    const pdf = await pdfjsLib.getDocument(typedarray).promise;
-                    let fullText = "";
-                    
-                    for (let i = 1; i <= pdf.numPages; i++) {
-                        const page = await pdf.getPage(i);
-                        const textContent = await page.getTextContent();
-                        const pageText = textContent.items.map(item => item.str).join(" ");
-                        fullText += `--- Page ${i} ---\n` + pageText + "\n\n";
-                    }
-                    
-                    document.getElementById('output-text').value = fullText;
-                    document.getElementById('copy-btn').style.display = 'inline-block';
-                } catch (error) {
-                    alert("Error parsing PDF. Make sure it is not password-protected.");
+            // Reset fields
+            document.getElementById('ip-val').innerText = "Loading...";
+            document.getElementById('isp-val').innerText = "Loading...";
+            document.getElementById('speed-val').innerText = "Testing...";
+
+            try {
+                // 1. Fetch IP and ISP from a free, open API (ip-api.com)
+                const geoResponse = await fetch('https://ip-api.com');
+                const geoData = await geoResponse.json();
+                
+                if(geoData.status === "success") {
+                    document.getElementById('ip-val').innerText = geoData.query;
+                    document.getElementById('isp-val').innerText = geoData.isp;
+                } else {
+                    document.getElementById('ip-val').innerText = "Failed";
+                    document.getElementById('isp-val').innerText = "Failed";
                 }
-            };
-            reader.readAsArrayBuffer(file);
-        }
+            } catch (err) {
+                document.getElementById('ip-val').innerText = "Blocker Active";
+                document.getElementById('isp-val').innerText = "Blocker Active";
+            }
 
-        function copyText() {
-            const textarea = document.getElementById('output-text');
-            textarea.select();
-            document.execCommand('copy');
-            alert('Text copied to clipboard!');
+            // 2. Measure Download Speed using a free public asset from Cloudflare's CDN
+            // We use a timestamp to prevent the browser from caching the file
+            const testImage = "https://cloudflare.com" + new Date().getTime();
+            const fileSizeInBits = 594000 * 8; // Size of the specific file above in bits (~594 KB)
+            
+            const startTime = new Date().getTime();
+            
+            try {
+                await fetch(testImage, { cache: "no-store" });
+                const endTime = new Date().getTime();
+                
+                const durationInSeconds = (endTime - startTime) / 1000;
+                
+                // Avoid dividing by zero if the connection is insanely fast
+                const finalDuration = durationInSeconds > 0 ? durationInSeconds : 0.01;
+                const speedBps = fileSizeInBits / finalDuration;
+                const speedMbps = (speedBps / (1024 * 1024)).toFixed(2);
+                
+                document.getElementById('speed-val').innerText = speedMbps + " Mbps";
+            } catch (speedErr) {
+                document.getElementById('speed-val').innerText = "Error Testing";
+            }
+
+            btn.innerText = "Run Diagnostics";
+            btn.disabled = false;
         }
     </script>
 </body>
