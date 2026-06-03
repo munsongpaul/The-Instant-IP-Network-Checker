@@ -55,7 +55,19 @@
             document.getElementById('ip').innerText = d.ip;
             document.getElementById('isp').innerText = d.org;
             document.getElementById('loc').innerText = `${d.city}, ${d.country_name}`;
-            document.getElementById('ua').innerText = navigator.userAgent.split(' ')[0].replace('/', ' ');
+            
+            // Detect Browser
+            const ua = navigator.userAgent;
+            let browser = "Unknown";
+            if (ua.includes("Firefox")) browser = "Firefox";
+            else if (ua.includes("SamsungBrowser")) browser = "Samsung Internet";
+            else if (ua.includes("Opera") || ua.includes("OPR")) browser = "Opera";
+            else if (ua.includes("Trident")) browser = "Internet Explorer";
+            else if (ua.includes("Edge")) browser = "Edge";
+            else if (ua.includes("Chrome")) browser = "Chrome";
+            else if (ua.includes("Safari")) browser = "Safari";
+            document.getElementById('ua').innerText = browser;
+            
         } catch(e) { document.getElementById('ip').innerText = "Failed to load"; }
     }
     
