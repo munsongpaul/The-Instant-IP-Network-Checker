@@ -1,66 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-site-verification" content="5jms-XyrSAsJyU73vlktKfXWgu0vjuOF4UZkxjkwrK4" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instant Online IP Address & Network Diagnostic Tool</title>
+    <title>Instant IP & Network Diagnostic Dashboard</title>
     <style>
-        :root {--bg-color: #0f172a; --card-bg: #1e293b; --accent: #38bdf8; --text-main: #f8fafc; --text-muted: #94a3b8; --border: #334155; }
-        body {font-family: system-ui, -apple-system, sans-serif; background-color: var(--bg-color); color: var(--text-main); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        .container {max-width: 800px; width: 100%; margin-top: 40px; }
-        header {text-align: center; margin-bottom: 30px; }
-        h1 {color: var(--accent); margin-bottom: 10px; }
-        .card {background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .info-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
-        .info-item {background: rgba(15, 23, 42, 0.4); padding: 16px; border-radius: 8px; border: 1px solid var(--border); }
-        .label {color: var(--text-muted); font-size: 12px; text-transform: uppercase; margin-bottom: 4px; }
-        .value {font-size: 18px; font-weight: 600; font-family: monospace; }
-        .footer-nav {text-align: center; margin-top: 40px; padding: 20px; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); }
-        .footer-nav a {color: var(--accent); text-decoration: none; margin: 0 10px; }
+        :root {--bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --accent: #38bdf8;}
+        body {font-family: sans-serif; background: var(--bg); color: var(--text); padding: 40px 20px; display: flex; flex-direction: column; align-items: center; min-height: 100vh;}
+        .container {max-width: 700px; width: 100%;}
+        .card {background: var(--card); padding: 30px; border-radius: 16px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); margin-bottom: 20px;}
+        h1 {color: var(--accent); margin-top: 0;}
+        .data-box {display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;}
+        .item {background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;}
+        .label {font-size: 0.8rem; color: #94a3b8; text-transform: uppercase;}
+        .value {font-size: 1.2rem; font-weight: bold; margin-top: 5px; word-break: break-all;}
+        .footer {margin-top: 30px; font-size: 0.9rem; text-align: center; color: #64748b;}
+        a {color: var(--accent);}
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header>
-        <h1>Network Diagnostics Dashboard</h1>
-        <p>Your instant, private view of your network connection details.</p>
-    </header>
-
     <div class="card">
-        <div class="info-grid">
-            <div class="info-item"><div class="label">Public IP Address</div><div class="value" id="ip-address">Loading...</div></div>
-            <div class="info-item"><div class="label">ISP Provider</div><div class="value" id="isp-provider">Analyzing...</div></div>
-            <div class="info-item"><div class="label">Location</div><div class="value" id="geo-location">Resolving...</div></div>
-            <div class="info-item"><div class="label">Browser</div><div class="value" style="font-size: 14px;" id="user-agent">Loading...</div></div>
+        <h1>Network Dashboard</h1>
+        <p>Your instant network connection diagnostics.</p>
+        <div class="data-box">
+            <div class="item"><div class="label">Public IP</div><div class="value" id="ip">Loading...</div></div>
+            <div class="item"><div class="label">ISP</div><div class="value" id="isp">Loading...</div></div>
+            <div class="item"><div class="label">Location</div><div class="value" id="loc">Loading...</div></div>
+            <div class="item"><div class="label">Browser</div><div class="value" id="ua">Detecting...</div></div>
         </div>
     </div>
 
     <div class="card">
-        <h2>Why use our IP Checker?</h2>
-        <p>This tool instantly identifies your public-facing IP and ISP details without tracking or storing your data. It is the fastest way to verify your connection for troubleshooting or security audits.</p>
+        <h3>About This Tool</h3>
+        <p>This dashboard provides real-time visibility into your public network footprint. It is widely used by developers and IT professionals for troubleshooting ISP routing, verifying VPN status, and auditing security configurations.</p>
+        <p><strong>Privacy:</strong> We perform zero logging. Your network data is retrieved directly from secure API endpoints to your browser.</p>
     </div>
 
-    <div class="footer-nav">
-        More Tools: 
-        <a href="https://age-calculator-suite.vercel.app/" target="_blank">Age Calculator</a> | 
-        <a href="https://pdftextextractor.vercel.app/" target="_blank">PDF Text Extractor</a>
+    <div class="footer">
+        Suite: <a href="https://age-calculator-suite.vercel.app/" target="_blank">Age Calculator</a> | 
+        <a href="https://pdftextextractor.vercel.app/" target="_blank">PDF Extractor</a>
     </div>
 </div>
 
 <script>
-    document.getElementById('user-agent').innerText = navigator.userAgent.split(' ')[0] + " Browser";
-    async function fetchNetworkDiagnostics() {
+    async function getIP() {
         try {
-            const response = await fetch('https://ipapi.co/json/');
-            const data = await response.json();
-            document.getElementById('ip-address').innerText = data.ip;
-            document.getElementById('isp-provider').innerText = data.org;
-            document.getElementById('geo-location').innerText = `${data.city}, ${data.country_name}`;
-        } catch (e) { document.getElementById('ip-address').innerText = 'Error loading data'; }
+            const res = await fetch('https://ipapi.co/json/');
+            const d = await res.json();
+            document.getElementById('ip').innerText = d.ip;
+            document.getElementById('isp').innerText = d.org;
+            document.getElementById('loc').innerText = `${d.city}, ${d.country_name}`;
+            document.getElementById('ua').innerText = navigator.userAgent.split(' ')[0].replace('/', ' ');
+        } catch(e) { document.getElementById('ip').innerText = "Failed to load"; }
     }
-    fetchNetworkDiagnostics();
+    getIP();
 </script>
 </body>
 </html>
