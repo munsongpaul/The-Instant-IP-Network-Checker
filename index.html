@@ -5,30 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instant IP Network Checker | Public IP & ISP Details</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
-        #tool-container { background: #f4f4f4; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0; }
+        :root { --bg-color: #ffffff; --text-color: #333; }
+        .dark-mode { --bg-color: #222; --text-color: #f4f4f4; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; transition: 0.3s; }
+        #tool-container { background: #f4f4f4; color: #333; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0; }
+        button { padding: 10px 20px; cursor: pointer; margin: 5px; }
         footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ccc; text-align: center; }
         section { margin: 20px 0; }
     </style>
 </head>
 <body>
 
+    <button onclick="toggleDarkMode()">Toggle Dark/Light Mode</button>
     <h1>Instant IP Network Checker</h1>
     
     <div id="tool-container">
         <h3>Your Public IP Address:</h3>
-        <p id="ip-address">Loading...</p>
+        <p id="ip-address" style="font-size: 1.5rem; font-weight: bold;">Loading...</p>
+        <button onclick="copyIP()">Copy IP Address</button>
     </div>
 
     <script>
+        // Fetch IP
         fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
-            .then(data => {
-                document.getElementById('ip-address').innerText = data.ip;
-            })
-            .catch(error => {
-                document.getElementById('ip-address').innerText = "Unable to fetch IP.";
-            });
+            .then(data => document.getElementById('ip-address').innerText = data.ip)
+            .catch(() => document.getElementById('ip-address').innerText = "Unable to fetch IP.");
+
+        // Copy Function
+        function copyIP() {
+            const ip = document.getElementById('ip-address').innerText;
+            navigator.clipboard.writeText(ip).then(() => alert("Copied IP: " + ip));
+        }
+
+        // Dark Mode Function
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
     </script>
 
     <hr>
