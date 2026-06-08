@@ -2,13 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instant IP Network Checker | Public IP & ISP Details</title>
+    <style>
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+        #tool-container { background: #f4f4f4; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0; }
+        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ccc; text-align: center; }
+        section { margin: 20px 0; }
+    </style>
 </head>
 <body>
+
     <h1>Instant IP Network Checker</h1>
     
     <div id="tool-container">
-        </div>
+        <h3>Your Public IP Address:</h3>
+        <p id="ip-address">Loading...</p>
+    </div>
+
+    <script>
+        fetch('https://api.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('ip-address').innerText = data.ip;
+            })
+            .catch(error => {
+                document.getElementById('ip-address').innerText = "Unable to fetch IP.";
+            });
+    </script>
 
     <hr>
 
@@ -34,5 +55,6 @@
             <a href="contact.html">Contact Us</a>
         </nav>
     </footer>
+
 </body>
 </html>
