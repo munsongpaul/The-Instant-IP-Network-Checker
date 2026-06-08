@@ -20,17 +20,28 @@
     <h1>Instant IP Network Checker</h1>
     
     <div id="tool-container">
-        <h3>Your Public IP Address:</h3>
-        <p id="ip-address" style="font-size: 1.5rem; font-weight: bold;">Loading...</p>
+        <h3>Your Network Details:</h3>
+        <p><strong>Public IP:</strong> <span id="ip-address">Loading...</span></p>
+        <p><strong>Location:</strong> <span id="location">Detecting...</span></p>
+        <p><strong>Platform:</strong> <span id="platform">Detecting...</span></p>
         <button onclick="copyIP()">Copy IP Address</button>
     </div>
 
     <script>
-        // Fetch IP
-        fetch('https://api.ipify.org?format=json')
+        // Fetch IP and Location data
+        fetch('https://ipapi.co/json/')
             .then(response => response.json())
-            .then(data => document.getElementById('ip-address').innerText = data.ip)
-            .catch(() => document.getElementById('ip-address').innerText = "Unable to fetch IP.");
+            .then(data => {
+                document.getElementById('ip-address').innerText = data.ip;
+                document.getElementById('location').innerText = `${data.city}, ${data.country_name}`;
+            })
+            .catch(() => {
+                document.getElementById('ip-address').innerText = "Error";
+                document.getElementById('location').innerText = "Unable to detect";
+            });
+
+        // Set Platform Info
+        document.getElementById('platform').innerText = navigator.platform;
 
         // Copy Function
         function copyIP() {
