@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instant IP Network Checker | Public IP & ISP Details</title>
+    <meta name="description" content="Instantly check your public IP address, location, and ISP details with our secure, local browser tool. No logging, no tracking, and 100% free.">
+    <title>Instant IP Network Checker | Public IP & Connection Info</title>
+    
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+
     <style>
         :root { --bg-color: #ffffff; --text-color: #333; }
         .dark-mode { --bg-color: #222; --text-color: #f4f4f4; }
         body { background-color: var(--bg-color); color: var(--text-color); font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; transition: 0.3s; }
         #tool-container { background: #f4f4f4; color: #333; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0; }
         button { padding: 10px 20px; cursor: pointer; margin: 5px; }
-        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ccc; text-align: center; }
-        section { margin: 20px 0; }
+        .faq-section { margin-top: 40px; border-top: 1px solid #ccc; padding-top: 20px; }
+        footer { margin-top: 50px; text-align: center; font-size: 0.9em; color: #555; border-top: 1px solid #ccc; padding-top: 20px; }
+        footer a { color: #555; text-decoration: none; margin: 0 5px; }
     </style>
 </head>
 <body>
@@ -27,6 +33,21 @@
         <button onclick="copyIP()">Copy IP Address</button>
     </div>
 
+    <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <p><strong>Q: Does this tool log my IP address?</strong><br>
+        A: No, we do not store, log, or track your IP address or any connection data. All processing is done in real-time in your browser.</p>
+        <p><strong>Q: Is this service free?</strong><br>
+        A: Yes, this is a free, privacy-first utility tool provided for your convenience.</p>
+    </section>
+
+    <footer>
+        <a href="privacy.html">Privacy Policy</a> | 
+        <a href="terms.html">Terms of Service</a> | 
+        <a href="contact.html">Contact Us</a> | 
+        <a href="guide.html">Guide</a>
+    </footer>
+
     <script>
         // Fetch IP and Location data
         fetch('https://ipapi.co/json/')
@@ -34,51 +55,17 @@
             .then(data => {
                 document.getElementById('ip-address').innerText = data.ip;
                 document.getElementById('location').innerText = `${data.city}, ${data.country_name}`;
-            })
-            .catch(() => {
-                document.getElementById('ip-address').innerText = "Error";
-                document.getElementById('location').innerText = "Unable to detect";
+                document.getElementById('platform').innerText = navigator.platform;
             });
 
-        // Set Platform Info
-        document.getElementById('platform').innerText = navigator.platform;
-
-        // Copy Function
         function copyIP() {
             const ip = document.getElementById('ip-address').innerText;
-            navigator.clipboard.writeText(ip).then(() => alert("Copied IP: " + ip));
+            navigator.clipboard.writeText(ip).then(() => alert("IP copied to clipboard!"));
         }
 
-        // Dark Mode Function
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
         }
     </script>
-
-    <hr>
-
-    <section>
-        <h2>What is an IP Address?</h2>
-        <p>An Internet Protocol (IP) address is a unique string of numbers separated by periods that identifies each computer using the Internet Protocol to communicate over a network. Think of it as a digital home address for your device.</p>
-
-        <h2>Why is this tool useful?</h2>
-        <ul>
-            <li><strong>Privacy Checks:</strong> Verify if your VPN is successfully hiding your real location.</li>
-            <li><strong>Network Troubleshooting:</strong> Identify your ISP and network connection status quickly.</li>
-            <li><strong>Security:</strong> Understand how the public internet sees your connection.</li>
-        </ul>
-
-        <h2>How it works</h2>
-        <p>Our tool communicates with secure servers to identify the public IP address assigned to your connection by your Internet Service Provider (ISP). The process happens entirely in your browser, ensuring that your data is processed quickly and securely.</p>
-    </section>
-
-    <footer>
-        <nav>
-            <a href="about.html">About Us</a> | 
-            <a href="privacy.html">Privacy Policy</a> | 
-            <a href="contact.html">Contact Us</a>
-        </nav>
-    </footer>
-
 </body>
 </html>
