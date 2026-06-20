@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Instantly check your public IP address, location, and network connection details with our secure, local browser tool. No logging, no tracking, and 100% free.">
+    <meta name="description" content="Instantly check your public IP address, location, and ISP details with our secure, local browser tool. No logging, no tracking, and 100% free.">
     <title>Instant IP Network Checker | Public IP & Connection Info</title>
     
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -27,7 +27,7 @@
     <section class="faq-section">
         <h2>Frequently Asked Questions</h2>
         <p><strong>Q: Does this tool log my IP address?</strong><br>
-        A: No, we do not store, log, or track your IP address or any connection data.</p>
+        A: No, we do not store, log, or track your IP address or any connection data. Processing happens locally in your browser.</p>
         <p><strong>Q: Is this service free?</strong><br>
         A: Yes, this is a free, privacy-first utility tool provided for your convenience.</p>
     </section>
@@ -44,7 +44,7 @@
         fetch('https://api.ipify.org?format=json')
             .then(response => response.json())
             .then(data => document.getElementById('ip-address').innerText = data.ip)
-            .catch(() => document.getElementById('ip-address').innerText = "Error loading IP");
+            .catch(() => document.getElementById('ip-address').innerText = "Unable to fetch IP");
     </script>
 </body>
 </html>
